@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: TacoCloud
+  thymeleaf:
+    cache: false
+  datasource:
+    #initialize: false
+    name: tacocloud
+    username: postgres
+    password: rootroot
+    url: jdbc:postgresql://localhost:5432/tacocloud
+    hikari:
+      driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
