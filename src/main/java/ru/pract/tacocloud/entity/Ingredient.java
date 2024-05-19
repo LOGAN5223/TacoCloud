@@ -24,5 +24,5 @@ public class Ingredient {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
     }
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Ingredient> ingredient_ref;
+    private List<Ingredient> taco_ingredient;
 }

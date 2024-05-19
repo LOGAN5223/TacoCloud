@@ -9,7 +9,7 @@
 </head>
 <body>
     <!--/*@thymesVar id="tacoOrder" type="ru.pract.tacocloud.entity.TacoOrder"*/-->
-    <form method="POST" th:action="@{/orders}" th:object="${tacoOrder}">
+    <form method="POST" th:action="@{/orders/process}" th:object="${tacoOrder}">
         <h1>Order your taco creations!</h1>
         <img th:src="@{/images/PogChamp.png}" alt="">
 

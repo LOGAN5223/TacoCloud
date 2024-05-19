@@ -12,7 +12,7 @@
         <h1>Design your taco!</h1>
         <img th:src="@{/images/PogChamp.png}"/>
 
-        <form method="POST" th:object="${taco}">
+        <form method="POST" th:object="${taco}" th:action="@{/design}">
             <div class="grid">
                 <div class="ingredient-group" id="wraps">
                     <h3>Designate your wrap:</h3>

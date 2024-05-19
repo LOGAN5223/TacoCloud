@@ -15,3 +15,8 @@ spring:
     init:
       mode: always
       data-locations: classpath:data.sql
+server:
+  error:
+    include-exception: true
+
+    include-stacktrace: always

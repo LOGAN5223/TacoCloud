@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TacoCloud</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+    <!--/*@thymesVar id="userTable" type="ru.pract.tacocloud.entity.UserTable"*/-->
+    <form method="GET" th:action="@{/orders}" th:object="${userTable}">
+        <h1>Here is your orders!</h1>
+        <img th:src="@{/images/PogChamp.png}" alt="">
+        <ul>
+            <li th:each="tacoOrder : ${userTable.tacoOrders}">
+                <span th:text="${tacoOrder.id}">tacoOrder id</span>
+            </li>
+        </ul>
+    </form>
+</body>
+</html>

@@ -1,10 +1,12 @@
 package ru.pract.tacocloud.entity;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import java.io.Serializable;
@@ -12,7 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class TacoOrder implements Serializable {
 
@@ -52,8 +55,18 @@ public class TacoOrder implements Serializable {
     @OneToMany(mappedBy = "taco_order_id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Taco> tacos = new ArrayList<>();
 
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "user_table_id", referencedColumnName = "id")
+    private UserTable user_table_id;
+
     public void addTaco(Taco taco){
         this.tacos.add(taco);
         taco.setTaco_order_id(TacoOrder.this);
+    }
+
+    @Transactional
+    public void setUserTable(UserTable userTable) {
+        userTable.getTacoOrders().add(TacoOrder.this);
+        this.setUser_table_id(userTable);
     }
 }
