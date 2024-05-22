@@ -4,7 +4,9 @@ import jakarta.validation.Valid;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import ru.pract.tacocloud.entity.TacoOrder;
 import ru.pract.tacocloud.entity.UserTable;
 import ru.pract.tacocloud.repository.OrderRepository;
+import ru.pract.tacocloud.service.UserUtils;
 
 @Controller
 @RequestMapping(value = "/orders", method = { RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE })
@@ -19,10 +22,22 @@ import ru.pract.tacocloud.repository.OrderRepository;
 public class OrderController {
 
     private OrderRepository orderRepository;
-
-    public OrderController(OrderRepository orderRepository){
+    private UserUtils userUtils;
+    public OrderController(OrderRepository orderRepository, UserUtils userUtils){
         this.orderRepository = orderRepository;
+        this.userUtils = userUtils;
     }
+
+    @ModelAttribute("userTable")
+    public UserTable userTable(){
+        return (UserTable) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    @GetMapping("/ordersInfo")
+    public String getOrders(){
+        return "orderInfo";
+    }
+
 
     @GetMapping(value = {"/current", "/"})
     public String orderForm(){

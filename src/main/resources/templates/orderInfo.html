@@ -12,10 +12,15 @@
     <form method="GET" th:action="@{/orders}" th:object="${userTable}">
         <h1>Here is your orders!</h1>
         <img th:src="@{/images/PogChamp.png}" alt="">
-        <ul>
-            <li th:each="tacoOrder : ${userTable.tacoOrders}">
-                <span th:text="${tacoOrder.id}">tacoOrder id</span>
-            </li>
+<!--            <li th:each="tacoOrder : ${userTable.tacoOrders}">-->
+<!--                <span th:text="${tacoOrder.id}">tacoOrder id</span>-->
+<!--            </li>-->
+<!--        <ul th:each="tacoOrder : ${userTable}" th:value="userTable.tacoOrders">-->
+<!--            <span th:text="${tacoOrder.id}">userTable username</span>-->
+<!--        </ul>-->
+        <h2>Your Taco Orders id's:</h2>
+        <ul th:each="tacoOrder : ${userTable.tacoOrders}">
+            <span th:text="${tacoOrder.id}"></span>
         </ul>
     </form>
 </body>
