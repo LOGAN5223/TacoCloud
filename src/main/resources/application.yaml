@@ -20,3 +20,10 @@ server:
     include-exception: true
 
     include-stacktrace: always
+  ssl:
+    key-store: C:\Users\admin\Desktop\Programming\Всякая бредятина\TacoCloud\mykeys.jks
+    key-store-password: rootroot
+    key-password: rootroot
+taco:
+  orders:
+    pageSize: 10

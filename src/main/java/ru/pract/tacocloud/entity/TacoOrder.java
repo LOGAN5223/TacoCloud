@@ -34,7 +34,7 @@ public class TacoOrder implements Serializable {
     @NotBlank(message="Street is required")
     private String delivery_street;
 
-    @NotBlank(message="City is required")
+    @NotBlank(message="City is required")   
     private String delivery_city;
 
     @NotBlank(message="State is required")
